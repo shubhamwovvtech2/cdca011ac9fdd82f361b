@@ -10,6 +10,7 @@ gem 'rails', '~> 6.0.3', '>= 6.0.3.2'
 gem 'mysql2'
 gem 'ransack'
 gem 'devise'
+gem 'sidekiq'
 # Use Puma as the app server
 gem 'puma', '~> 4.1'
 # Use SCSS for stylesheets

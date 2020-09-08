@@ -62,6 +62,16 @@ class ShowsController < ApplicationController
     redirect_to "/homes",notice: "Show added to favorites successfully."
   end
 
+  def searchbychannel
+      @q = Channel.ransack(params[:q])
+      @channels = @q.result
+  end 
+
+  def searchbyshow
+      @q = Show.ransack(params[:q])
+      @shows = @q.result
+      render template: "homes/index", :locals => {:shows => @shows}      
+  end
   # DELETE /shows/1
   # DELETE /shows/1.json
   def destroy

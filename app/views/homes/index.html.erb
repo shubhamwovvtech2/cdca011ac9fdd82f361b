@@ -2,6 +2,15 @@
 
 <h1>Homes</h1>
 
+<!-- <%#= form_tag "/searchbychannel" do %>
+  <input type="text" name="q[channel_name_cont]" placeholder="Search by channel name">
+  <button type="button" id="searchbychannel">Search Channel</button>
+<#% end %> -->
+<!-- <#%= form_tag "/searchbyshow" do %>
+  <input type="text" name="q[show_name_cont]"  placeholder="Search by show name">
+  <button type="button" id="searchbyshow" style="width: 9%;">Search Show</button>
+<#% end %> -->
+
 <table>
   <thead>
     <tr>
@@ -48,5 +57,15 @@
       }
     })
   });
+
+  $("#searchbyshow").click(function(){
+    form = $(this).closest('form');
+    form.submit();
+  });
+
+   $("#searchbychannel").click(function(){
+    form = $(this).closest('form');
+    form.submit();
+  }); 
 
 </script>
