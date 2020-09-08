@@ -1,0 +1,52 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Homes</h1>
+
+<table>
+  <thead>
+    <tr>
+      <td>Favorite</td>
+      <td>Channel Name</td>
+      <td>Show Name</td>
+      <td>Show Timing</td>
+    </tr>
+  </thead>
+
+  <tbody>
+
+
+    <% @shows = Show.all %>
+    <% @shows.each do |show| %>
+      <tr>
+        <td>
+            <%= check_box_tag 'favid', '1', show.favorite %><br>
+        </td>
+        <td><%= show.try(:channel).try(:name) %></td>
+        <td><%= show.try(:name) %></td>
+        <td><%= show.try(:starttime).try(:strftime,"%H:%M") %> - <%= show.try(:endtime).try(:strftime,"%H:%M") %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<script type="text/javascript">
+  
+  $("#favid").click(function(){
+    var id = $(this).val();
+    $.ajax({
+      type: "POST",
+      url: "/favorite",
+      data: { favorite: { id: id } },
+      success(data) {
+        alert(data.id);
+        return false;
+      },
+      error(data) {
+        return false;
+      }
+    })
+  });
+
+</script>

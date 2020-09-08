@@ -1,0 +1,39 @@
+<%= form_with(model: show, local: true) do |form| %>
+  <% if show.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(show.errors.count, "error") %> prohibited this show from being saved:</h2>
+
+      <ul>
+        <% show.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+  <div>
+    <%= form.label :channel_name %>
+    <% @channel = Channel.all %>
+    <%= select_tag "channel", options_from_collection_for_select(@channel, "id", "name"), prompt: "Select Channel",style:"width:17%;height:25px;",name:"show[channel_id]"%>
+  </div><br>
+
+  <div class="field">
+    <%= form.label :show_name %>
+    <%= form.text_field :name,style:"width:17%;height:17px;" %>
+  </div><br>
+
+  <div>
+    <%= form.label :start_time %>
+    <input type="datetime-local" name="show[starttime]">
+  </div><br>
+
+  <div>
+    <%= form.label :end_time %>
+    <input type="datetime-local" name="show[endtime]">
+  </div><br>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
